@@ -12,19 +12,29 @@ const CreateNew = () => {
 	const [image, setImage] = useState('');
 	let navigate = useNavigate();
 
+	/**
+	 * It takes the data from the form and sends it to the server.
+	 */
 	const postPost = () => {
-		let data = {
-			title: title,
-			text: text,
-			image: image
-		};
-		console.log(data)
-		axios.post(`${server}/posts`, data).then(function (response) {
-			console.log(response);
-			navigate('/', { replace: true });
-		}).catch(function (error) {
-			console.log(error);
-		});
+		/* Checking if the title, text and image are not empty. If they are not empty, it will send the data
+		to the server. If they are empty, it will show an alert. */
+		if(title !== '' && text !== '' && image !== '' ){
+			let data = {
+				title: title,
+				text: text,
+				image: image
+			};
+			console.log(data)
+			/* Sending the data to the server. */
+			axios.post(`${server}/posts`, data).then(function (response) {
+				console.log(response);
+				navigate('/', { replace: true });
+			}).catch(function (error) {
+				console.log(error);
+			});
+		} else {
+			alert('Debes llenar todos los datos');
+		}
 	}
 
 	return (
