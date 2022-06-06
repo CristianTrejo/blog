@@ -56,15 +56,13 @@ const Main = () => {
 			alignItems="cetner"
 		>
 			<Grid item xs={12} style={{textAlign: 'center'}}>
-				<Button variant="contained" onClick={() => navigate('/create-new')}>
+				<Button variant="contained" onClick={() => navigate('/create-new')} style={{marginBottom: 16}}>
 					Crear nueva entrada
 				</Button>
-			</Grid>
-			<Grid item xs={12}>
 				<Grid container style={styles.content}>
-					{posts.map(post => (
+					{posts.length > 0 ?posts.map(post => (
 						PostComponent(post)
-					))}
+					)) : <h3 >No hay publicaciones</h3>}
 				</Grid>
 			</Grid>
 		</Grid>
